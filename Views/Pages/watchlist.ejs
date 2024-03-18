@@ -1,0 +1,45 @@
+<%- include('../Partials/Header1')%>
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between  align-items-center flex-wrap shadow-lg ">
+      <% movies.forEach((movie)=> { console.log(movie); %>
+        <div class="col-6 mt-2  d-flex justify-content-between ">
+          <div class="card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="/<%= movie.file %>" class="card-img-top" alt="...">
+              </div>
+            </div>
+          </div>
+          <div class=" p-3 w-50">
+            <p class="title fs-1 text-start0 text-white">
+              <%= movie.name %>
+            </p>
+            <p class="text-white">
+              <% const publishDate=new Date(movie.year); const day=publishDate.getDate().toString().padStart(2, '0'
+                ); const month=(publishDate.getMonth() + 1).toString().padStart(2, '0' ); // Month is zero-based
+                const year=publishDate.getFullYear(); const formattedPublishDate=`${day}/${month}/${year}`; %>
+                <%= formattedPublishDate %>
+            </p>
+            <div class="d-flex">
+              <p class="text-white">
+                <%= movie.genre %>
+              </p>
+              <p class="text-white">
+                <%= movie.rating %>
+              </p>
+            </div>
+            <p class="lh-sm mt-3 text-white">
+              <%= movie.description %>
+            </p>
+            <a href="/deleteData/<%= movie._id%>" class="btn btn-danger d-block mb-3">Delete</a>
+            <a href="/editData/<%= movie._id%>" class="btn btn-danger d-block">Edit</a>
+          </div>
+        </div>
+
+
+        <% }) %>
+    </div>
+  </div>
+
+
+  <%- include('../Partials/Footer')%>
